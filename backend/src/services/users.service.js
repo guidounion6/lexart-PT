@@ -1,6 +1,5 @@
 const { models } = require("../libs/sequelize")
 const bcrypt = require("bcryptjs");
-const { Op } = require("sequelize")
 const { v4: uuidv4 } = require("uuid")
 
 class UsersService {

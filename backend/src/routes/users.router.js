@@ -6,6 +6,7 @@ const usersController = require("../controllers/users.controller")
 
 router.post("/register", usersController.register);
 router.post("/login", usersController.login);
+router.post("/refresh-token", usersController.refreshToken);
 router.get("/", usersController.get)
 router.get("/:id", usersController.getById)
 router.put("/:id", usersController.update)
