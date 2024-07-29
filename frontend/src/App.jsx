@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import Login from './views/Login';
+
 import Register from './views/Register';
 import Home from './views/Home';
 import NavBar from "./components/NavBar";
@@ -9,6 +9,7 @@ import Layout from "./components/Layout";
 import NewProduct from "./components/NewProduct";
 import EditProduct from "./components/EditProduct";
 import DeletedProducts from "./components/DeletedProducts";
+import Login from "./views/Login";
 
 const App = () => {
   const location = useLocation();
