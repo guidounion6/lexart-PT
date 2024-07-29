@@ -14,6 +14,7 @@ export default {
         background: "#0F0E0E",
         accent: "#87CEEB",
         accent2: "#B91A1A",
+        green: "#07B908",
         black: "#0C0B0B",
         white: "#F7F7F7",
       },

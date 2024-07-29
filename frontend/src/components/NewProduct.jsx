@@ -1,5 +1,7 @@
 import axios from "../axios_config/axios.config";
 import { ErrorMessage, Field, Form, Formik } from "formik"
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import * as Yup from "yup";
 
 const createProductSchema = Yup.object().shape({
@@ -14,15 +16,13 @@ const createProductSchema = Yup.object().shape({
     .required("Price is required"),
 })
 
-const handleSubmit = () => {
-  axios.post('/api/products', {
-
-  })
-}
 
 const NewProduct = () => {
+
+  const navigate = useNavigate()
+
   return (
-    <div className="min-h-screen min-w-[50vw] flex flex-col items-center justify-start">
+    <div className="min-h-screen min-w-[60vw] flex flex-col items-center justify-start">
       <div className="max-w-[300px] bg-primary text-white py-2 px-4 mb-5 rounded-md text-center">
         <h1 className="text-white text-4xl">
           New Product
@@ -35,6 +35,14 @@ const NewProduct = () => {
           onSubmit={async (values, { setSubmitting }) => {
             try {
               await axios.post("products/register", values)
+              Swal.fire({
+                title: "Product created successfully",
+                text: "Product Created",
+                timer: 3000,
+                showConfirmButton: false,
+              }).then(() => {
+                navigate("/")
+              })
             } catch (error) {
               console.log("Error, try again", error)
             } finally {
@@ -46,7 +54,6 @@ const NewProduct = () => {
             <Form>
               <div className="mb-4">
                 <label
-                onSubmit={handleSubmit}
                   htmlFor="name"
                   className="block text-gray-700 text-sm font-bold mb-2"
                 >

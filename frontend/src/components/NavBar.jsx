@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import axios from "../axios_config/axios.config"
 import useFetchProducts from "../hooks/useFetchProducts"
+import NProgress from "nprogress"
+import 'nprogress/nprogress.css';
+import Swal from "sweetalert2";
 
 
 
@@ -23,18 +26,30 @@ const NavBar = () => {
     }
   }
 
-    const handleDelete = async () => {
-      try {
-        const response = await axios.delete("products")
-        const data = response.data.allProducts
-        setProducts(data)
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-        navigate("/")
+  const handleDelete = async () => {
+    Swal.fire({
+      title: 'Deleting...',
+      html: '<div id="nprogress"></div>',
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
       }
+    });
+
+    try {
+      const response = await axios.delete("products");
+      const data = response.data.allProducts;
+      NProgress.start();
+      setProducts(data);
+    } catch (error) {
+      setError(error);
+    } finally {
+      Swal.close();
+      setLoading(false);
+      NProgress.done();
+      navigate("/");
     }
+  };
 
       return (
         <nav className="relative w-full bg-black py-4">
