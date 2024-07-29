@@ -1,5 +1,9 @@
 require("dotenv").config();
 
+const pg = require('pg');
+
+const { Pool } = require("pg");
+
 const {
   DB_DATABASE,
   DB_USERNAME,

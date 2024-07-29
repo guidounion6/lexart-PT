@@ -7,7 +7,7 @@ class Product extends Model {
         return {
             sequelize,
             tableName: PRODUCTS_TABLE,
-            modelName: "Product", // Asegúrate de que el nombre del modelo empiece con mayúscula
+            modelName: "Product", 
             timestamps: false,
         };
     }
