@@ -1,17 +1,22 @@
-export const sidebarLinks = [ 
+export const sidebarLinks = [
     {
         label: "Home",
-        route: "/", 
+        route: "/",
         imgUrl: "/Home.svg"
-    }, 
+    },
     {
         label: "New Product",
         route: "/new",
         imgUrl: "/New.svg"
-    }, 
+    },
     {
         label: "Edit Product",
         route: "/edit",
         imgUrl: "/Edit.svg"
+    },
+    {
+        label: "Deleted Products",
+        route: "/deleted",
+        imgUrl: "/Deleted.svg"
     }
 ]

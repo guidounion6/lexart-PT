@@ -33,8 +33,8 @@ const ProductsList = () => {
                     products.map((product) => (
                         <div key={product.id} className="bg-white shadow-md rounded-lg overflow-hidden min-w-[190px]">
                             <div className="p-4 flex flex-col justify-center items-center">
-                                <h3 className="text-xl font-semibold text-black">{product.company}</h3>
                                 <h2 className="text-xl font-semibold text-black">{product.name}</h2>
+                                <h3 className="text-xl font-semibold text-black">{product.company}</h3>
                                 <p className="text-black font-medium pt-2">{product.description}</p>
                                 <p className="text-lg font-bold text-green mt-1 pb-1">${product.price}</p>
                                 <div>

@@ -8,6 +8,7 @@ import Guardian from "./components/auth/guardian";
 import Layout from "./components/Layout";
 import NewProduct from "./components/NewProduct";
 import EditProduct from "./components/EditProduct";
+import DeletedProducts from "./components/DeletedProducts";
 
 const App = () => {
   const location = useLocation();
@@ -36,6 +37,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/new" element={<NewProduct />} />
           <Route path="/edit" element={<EditProduct />} />
+          <Route path="/deleted" element={<DeletedProducts />} />
         </Route>
       </Routes>
     </div>

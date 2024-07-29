@@ -4,6 +4,7 @@ import NewProduct from "../components/NewProduct";
 import ProductsList from "../components/ProductsList";
 import useFetchProducts from '../hooks/useFetchProducts';
 import { useEffect } from 'react';
+import DeletedProducts from '../components/DeletedProducts';
 
 const Home = () => {
   const location = useLocation();
@@ -15,15 +16,17 @@ const Home = () => {
         return <NewProduct />;
       case '/edit':
         return <EditProduct />;
+      case '/deleted':
+        return <DeletedProducts />;
       default:
         return <ProductsList />;
     }
   };
 
   useEffect(() => {
-   
+
   }, [products])
-  
+
 
   return (
     <div className="w-full p-5 flex justify-center">
