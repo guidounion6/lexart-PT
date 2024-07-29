@@ -57,8 +57,18 @@ class ProductsService {
 
     async deleteProduct(id) {
         try {
-            const model = await this.findById(id)
-            await model.destroy()
+            const product = await this.findById(id)
+            if (!product) return new Error
+            
+
+            await models.Deleted.create({
+                name: product.name,
+                company: product.company,
+                description: product.description,
+                price: product.price,
+            });
+
+            await product.destroy()
             return { deleted: true };
         } catch (error) {
             return error
@@ -75,6 +85,14 @@ class ProductsService {
         } catch (error) {
             console.error("Error deleting products:", error);
             throw new Error('Failed to delete products');
+        }
+    }
+
+    async findAllDeleted() {
+        try {
+            return await models.Deleted.findAll()
+        } catch (error) {
+            return error
         }
     }
 

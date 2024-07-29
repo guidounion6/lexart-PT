@@ -48,6 +48,15 @@ const getById = async (req, res) => {
     }
 }
 
+const getDeletedProducts = async (req, res) => {
+    try {
+      const deletedProducts = await productsService.findAllDeleted();
+      res.status(200).json(deletedProducts);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  };
 
 const update = async (req, res) => {
     try {
@@ -86,6 +95,7 @@ module.exports = {
     loadAllProducts,
     get,
     getById,
+    getDeletedProducts,
     update,
     _delete,
     _deleteAll
