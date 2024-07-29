@@ -41,26 +41,10 @@ class ProductsService {
     };
 
     async findById(id) {
-        try {
-            return await models.Product.findByPk(id)
-        } catch (error) {
-            return error
-        }
+        const model = await models.Product.findByPk(id);
+        if (!model) throw new Error('Product not found');
+        return model;
     }
-
-    async getProductsByName(name) {
-        try {
-            console.log(`Searching for products with name like: %${name}%`);
-            const prod = await  models.Product.findAll({ where: { name:
-                {[Op.like] :`%${name}%`} } })
-            return prod;
-        } catch (error) {
-            console.error(error);
-            throw new Error("No products found");
-        }
-    }
-    
-    
 
     async updateProduct(id, data) {
         try {
@@ -83,17 +67,11 @@ class ProductsService {
 
     async deleteAllProducts() {
         try {
-            console.log("estoy en el service")
-            const deletedCount = await models.Product.destroy({
+            return await models.Product.destroy({
                 where: {},
                 truncate: true
             });
-            if (deletedCount === 0) {
-                console.log("No products were deleted.");
-                throw new Error("No products found to delete.");
-            }
-            console.log(`${deletedCount} products were deleted.`);
-            return { deletedCount };
+
         } catch (error) {
             console.error("Error deleting products:", error);
             throw new Error('Failed to delete products');

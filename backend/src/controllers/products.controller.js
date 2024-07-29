@@ -48,24 +48,6 @@ const getById = async (req, res) => {
     }
 }
 
-const getByName = async (req, res) => {
-    try {
-        const { name } = req.query;
-        if (!name) {
-            return res.status(400).json({ message: "Name query parameter is required" });
-        }
-
-        const product = await getProductsByName(name.toLowerCase());
-        if (product.length === 0) {
-            return res.status(404).json({ message: "No products found" });
-        }
-
-        res.status(200).json({ message: "Items found", product });
-    } catch (error) {
-        res.status(500).json({ message: "Server error", error });
-    }
-};
-
 
 const update = async (req, res) => {
     try {
@@ -81,11 +63,10 @@ const update = async (req, res) => {
 const _delete = async (req, res) => {
     try {
         const { id } = req.params;
-        const response = await productsService.deleteProduct(id)
-        res.json({ message: "Product deleted successfuly", response })
-
+        const response = await productsService.deleteProduct(id);
+        res.status(200).json({ message: "Product deleted successfully", response });
     } catch (error) {
-        res.json(500).send({ success: false, message: error.message })
+        res.status(500).json({ success: false, message: error.message });
     }
 }
 
@@ -99,12 +80,12 @@ const _deleteAll = async (req, res) => {
     }
 };
 
+
 module.exports = {
     register,
     loadAllProducts,
     get,
     getById,
-    getByName,
     update,
     _delete,
     _deleteAll

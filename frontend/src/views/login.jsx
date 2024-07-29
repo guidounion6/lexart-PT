@@ -28,6 +28,7 @@ const Login = () => {
                         try {
                             const response = await axios.post("users/login", values)
                             const { accessToken, refreshToken } = response.data;
+                            console.log(accessToken, refreshToken)
                             localStorage.setItem("token", accessToken);
                             localStorage.setItem("refreshToken", refreshToken);
                             navigate("/")
