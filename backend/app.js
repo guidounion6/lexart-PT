@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
   res.send("Backend with Node + Express + PostgreSQL");
 });
 
-const sequelize = new Sequelize(process.env.POSTGRES_URL, {
+const sequelize = new Sequelize(config.dbUrl, {
   dialect: 'postgres',
   protocol: 'postgres',
   dialectOptions: {
