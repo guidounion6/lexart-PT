@@ -77,11 +77,19 @@ class ProductsService {
 
     async deleteAllProducts() {
         try {
-            return await models.Product.destroy({
+            const products = await models.Product.findAll()
+            const deletedProducts = products.map(product => ({
+                name: product.name,
+                company: product.company,
+                description: product.description,
+                price: product.price,
+            }));
+            await models.Deleted.bulkCreate(deletedProducts)
+            await models.Product.destroy({
                 where: {},
                 truncate: true
             });
-
+            return true
         } catch (error) {
             console.error("Error deleting products:", error);
             throw new Error('Failed to delete products');
